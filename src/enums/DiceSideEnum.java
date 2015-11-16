@@ -1,6 +1,6 @@
 package enums;
 
-public enum DiceSide {
+public enum DiceSideEnum {
 	
 	CONVERSATION("conversation"),
 	DANCE("dance"),
@@ -10,7 +10,7 @@ public enum DiceSide {
 
 	private String fileName = null;
 
-	private DiceSide(String fileName) {
+	private DiceSideEnum(String fileName) {
 		this.fileName = fileName;
 	}
 

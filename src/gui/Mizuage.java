@@ -53,7 +53,7 @@ public class Mizuage extends Application {
 		primaryStage.setHeight(height);
 		primaryStage.setResizable(false);
 
-		primaryStage.setTitle("FX");
+		primaryStage.setTitle("Mizuage");
 
 		primaryStage
 				.setX((Screen.getPrimary().getBounds().getWidth() - width) / 2);

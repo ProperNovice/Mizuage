@@ -4,7 +4,10 @@ public enum Dimensions {
 
 	FRAME(1366, 768),
 	INSETS(7, 29),
-	GAP_BETWEEN_BORDERS(50, 50);
+	GAP_BETWEEN_BORDERS(50, 50),
+	DICE(50, 50),
+	
+	;
 
 	private double x = -1, y = -1;
 
