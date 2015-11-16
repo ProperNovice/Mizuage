@@ -16,7 +16,7 @@ import utils.ShutDown;
 import enums.Dimensions;
 import enums.GameStateEnum;
 
-public class FX extends Application {
+public class Mizuage extends Application {
 
 	private Panel panel = null;
 
