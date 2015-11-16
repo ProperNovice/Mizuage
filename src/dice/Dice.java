@@ -1,4 +1,4 @@
-package model;
+package dice;
 
 import utils.ArrayList;
 import utils.EventHandler.EventHandlerAble;

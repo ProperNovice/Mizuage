@@ -1,4 +1,4 @@
-package model;
+package dice;
 
 import javafx.scene.image.Image;
 import enums.DiceSideEnum;

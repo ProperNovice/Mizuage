@@ -5,7 +5,8 @@ public enum Dimensions {
 	FRAME(1366, 768),
 	INSETS(7, 29),
 	GAP_BETWEEN_BORDERS(50, 50),
-	DICE(50, 50),
+	DICE(100, 100),
+	SKILL_COLUMN(30, 100),
 	
 	;
 
