@@ -30,8 +30,12 @@ public class Dice implements EventHandlerAble {
 
 	private void createSides() {
 
-		for (DiceSideEnum diceSideEnum : DiceSideEnum.values())
-			this.diceSides.add(new DiceSide(diceSideEnum));
+		this.diceSides.add(new DiceSide(DiceSideEnum.CONVERSATION));
+		this.diceSides.add(new DiceSide(DiceSideEnum.DANCE));
+		this.diceSides.add(new DiceSide(DiceSideEnum.EXPENCE));
+		this.diceSides.add(new DiceSide(DiceSideEnum.EXPENCE));
+		this.diceSides.add(new DiceSide(DiceSideEnum.MUSIC));
+		this.diceSides.add(new DiceSide(DiceSideEnum.SERVICE));
 
 		this.diceSideShowing = this.diceSides.getRandom();
 
