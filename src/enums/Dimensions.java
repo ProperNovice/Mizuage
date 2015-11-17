@@ -9,6 +9,7 @@ public enum Dimensions {
 	SKILL_COLUMN((Dimensions.FRAME.x() - 2 * Dimensions.GAP_BETWEEN_BORDERS.x() - 16 * GAP_BETWEEN_COLUMNS.x()) / 17, (Dimensions.FRAME.x() - 2 * Dimensions.GAP_BETWEEN_BORDERS.x() - 16 * GAP_BETWEEN_COLUMNS.x()) / 17),
 	SKILL_COLUMN_TOKEN(SKILL_COLUMN.x(), SKILL_COLUMN.y()),
 	DICE(100, 100),
+	COIN(SKILL_COLUMN.x(), SKILL_COLUMN.y()),
 	
 	;
 

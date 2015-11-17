@@ -23,11 +23,10 @@ public class SkillColumnController {
 	private void createColumns() {
 
 		double x = Coordinates.SKILL_COLUMN.x();
-		double y = Coordinates.SKILL_COLUMN.y();
 
 		for (int counter = 1; counter <= 5; counter++) {
 
-			this.skillColumns.add(new SkillColumn(0, x, y));
+			this.skillColumns.add(new SkillColumn(0, x));
 
 			x += Dimensions.SKILL_COLUMN.x()
 					+ Dimensions.GAP_BETWEEN_COLUMNS.x();
@@ -36,7 +35,7 @@ public class SkillColumnController {
 
 		for (int counter = 1; counter <= 5; counter++) {
 
-			this.skillColumns.add(new SkillColumn(1, x, y));
+			this.skillColumns.add(new SkillColumn(1, x));
 
 			x += Dimensions.SKILL_COLUMN.x()
 					+ Dimensions.GAP_BETWEEN_COLUMNS.x();
@@ -45,7 +44,7 @@ public class SkillColumnController {
 
 		for (int counter = 1; counter <= 5; counter++) {
 
-			this.skillColumns.add(new SkillColumn(2, x, y));
+			this.skillColumns.add(new SkillColumn(2, x));
 
 			x += Dimensions.SKILL_COLUMN.x()
 					+ Dimensions.GAP_BETWEEN_COLUMNS.x();
@@ -54,7 +53,7 @@ public class SkillColumnController {
 
 		for (int counter = 1; counter <= 2; counter++) {
 
-			this.skillColumns.add(new SkillColumn(3, x, y));
+			this.skillColumns.add(new SkillColumn(3, x));
 
 			x += Dimensions.SKILL_COLUMN.x()
 					+ Dimensions.GAP_BETWEEN_COLUMNS.x();

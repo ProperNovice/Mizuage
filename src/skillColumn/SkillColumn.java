@@ -1,19 +1,19 @@
 package skillColumn;
 
 import utils.ImageView;
+import enums.Coordinates;
 import enums.Dimensions;
 
 public class SkillColumn {
 
 	private int money;
 	private ImageView imageView = null;
-	private double x, y;
+	private double x, y = Coordinates.SKILL_COLUMN.y();
 
-	public SkillColumn(int money, double x, double y) {
+	public SkillColumn(int money, double x) {
 
 		this.money = money;
 		this.x = x;
-		this.y = y;
 		createImageView();
 
 	}
@@ -47,9 +47,8 @@ public class SkillColumn {
 	}
 
 	private double getCoordinateY(int totalTokensInColumn) {
-		return this.y + Dimensions.SKILL_COLUMN.y()
-				+ Dimensions.GAP_BETWEEN_COLUMNS.y()
-				+ (totalTokensInColumn - 1) * Dimensions.SKILL_COLUMN_TOKEN.y();
+		return this.y - Dimensions.GAP_BETWEEN_COLUMNS.y()
+				- totalTokensInColumn * Dimensions.SKILL_COLUMN_TOKEN.y();
 	}
 
 	public int getMoney() {
