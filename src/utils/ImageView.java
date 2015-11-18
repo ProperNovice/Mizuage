@@ -3,13 +3,13 @@ package utils;
 import gui.PanelGame;
 import instances.Instances;
 import javafx.geometry.Rectangle2D;
-import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
 import utils.EventHandler.EventHandlerAble;
 
 public class ImageView implements Node {
 
 	private javafx.scene.image.ImageView imageView = null;
+	private Image image = null;
 	private double scale = 1;
 
 	public ImageView(String path) {
@@ -24,14 +24,17 @@ public class ImageView implements Node {
 
 	public ImageView(Image image, Parent parent) {
 
-		this.imageView = new javafx.scene.image.ImageView(image);
+		this.image = image;
+		this.imageView = new javafx.scene.image.ImageView(this.image.getImage());
+
 		addNode(parent);
 
 	}
 
 	public ImageView(Image image) {
 
-		this.imageView = new javafx.scene.image.ImageView(image);
+		this.image = image;
+		this.imageView = new javafx.scene.image.ImageView(this.image.getImage());
 
 		PanelGame panelGame = Instances.getPanelGameInstance();
 		addNode(panelGame);
@@ -117,11 +120,11 @@ public class ImageView implements Node {
 	}
 
 	public final void setImage(final Image image) {
-		PlatformFX.runLater(() -> this.imageView.setImage(image));
+		PlatformFX.runLater(() -> this.imageView.setImage(image.getImage()));
 	}
 
 	public final Image getImage() {
-		return this.imageView.getImage();
+		return this.image;
 	}
 
 	public final void setScale(double scale) {

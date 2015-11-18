@@ -16,6 +16,7 @@ public class TurnIndicatorController {
 	public TurnIndicatorController() {
 
 		createTurnIndicators();
+		this.turnIndicators.getFirst().getFirst().setActive();
 
 	}
 
