@@ -4,7 +4,7 @@ public class TurnIndicatorMaiko extends TurnIndicator {
 
 	@Override
 	protected void createPath() {
-		super.path = "turn/m.png";
+		super.path = "m";
 	}
 
 }
