@@ -66,7 +66,7 @@ public class SkillColumnController {
 
 		SkillColumnToken skillColumnToken = null;
 
-		skillColumnToken = new SkillColumnToken(DiceSideEnum.CONVERSATION);
+		skillColumnToken = new SkillColumnToken(DiceSideEnum.MUSIC);
 		this.skillColumnTokens.addEntry(skillColumnToken, 0);
 		this.skillColumns.get(0).relocateToken(skillColumnToken, 1);
 
@@ -74,7 +74,7 @@ public class SkillColumnController {
 		this.skillColumnTokens.addEntry(skillColumnToken, 0);
 		this.skillColumns.get(0).relocateToken(skillColumnToken, 2);
 
-		skillColumnToken = new SkillColumnToken(DiceSideEnum.MUSIC);
+		skillColumnToken = new SkillColumnToken(DiceSideEnum.CONVERSATION);
 		this.skillColumnTokens.addEntry(skillColumnToken, 0);
 		this.skillColumns.get(0).relocateToken(skillColumnToken, 3);
 

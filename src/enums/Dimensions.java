@@ -2,7 +2,7 @@ package enums;
 
 public enum Dimensions {
 
-	FRAME(1366, 768),
+	FRAME(1366, 748),
 	INSETS(7, 29),
 	GAP_BETWEEN_BORDERS(50, 50),
 	GAP_BETWEEN_COLUMNS(3, 3),
@@ -10,6 +10,7 @@ public enum Dimensions {
 	SKILL_COLUMN_TOKEN(SKILL_COLUMN.x(), SKILL_COLUMN.y()),
 	DICE(100, 100),
 	COIN(SKILL_COLUMN.x(), SKILL_COLUMN.y()),
+	TURN_INDICATOR(SKILL_COLUMN.x(), SKILL_COLUMN.y()),
 	
 	;
 

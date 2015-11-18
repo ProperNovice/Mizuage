@@ -5,6 +5,7 @@ import coin.Coin;
 import coin.CoinMinus;
 import coin.CoinPlus;
 import enums.Coordinates;
+import enums.Credentials;
 import enums.Dimensions;
 
 public class CoinController {
@@ -36,14 +37,14 @@ public class CoinController {
 		double firstX = Coordinates.COIN.x();
 		double x = firstX;
 		double y = Coordinates.COIN.y();
-		int coinsInRow = 4;
+		int coinsInRow = Credentials.COINS_PER_ROW.credential();
 
 		for (int counter = 0; counter <= 19; counter++) {
 
 			this.coinsPlus.get(counter).relocate(x, y);
 			this.coinsMinus.get(counter).relocate(x, y);
 
-			x += Dimensions.COIN.x();
+			x += Dimensions.COIN.x() + Dimensions.GAP_BETWEEN_COLUMNS.x();
 
 			if (counter % coinsInRow != coinsInRow - 1)
 				continue;

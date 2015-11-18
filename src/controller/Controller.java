@@ -9,6 +9,7 @@ public class Controller {
 	private Flow flow = null;
 	private SkillColumnController skillColumnController = null;
 	private CoinController coinController = null;
+	private TurnIndicatorController turnIndicatorController = null;
 
 	public Controller() {
 		createInstances();
@@ -23,6 +24,7 @@ public class Controller {
 		this.flow = new Flow();
 		this.skillColumnController = new SkillColumnController();
 		this.coinController = new CoinController();
+		this.turnIndicatorController = new TurnIndicatorController();
 
 	}
 
@@ -44,6 +46,10 @@ public class Controller {
 
 	public CoinController coinController() {
 		return this.coinController;
+	}
+
+	public TurnIndicatorController turnIndicatorController() {
+		return this.turnIndicatorController;
 	}
 
 }
