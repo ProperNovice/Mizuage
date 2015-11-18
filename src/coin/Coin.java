@@ -1,7 +1,7 @@
 package coin;
 
-import enums.Dimensions;
 import utils.ImageView;
+import enums.Dimensions;
 
 public class Coin {
 
