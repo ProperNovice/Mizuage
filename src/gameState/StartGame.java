@@ -1,5 +1,6 @@
 package gameState;
 
+import enums.DiceSideEnum;
 import enums.GameStateEnum;
 
 public class StartGame extends GameState {
@@ -10,6 +11,11 @@ public class StartGame extends GameState {
 
 	@Override
 	public void handleGameStateChange() {
+
+		super.controller.diceController().testSetDiceRolls(
+				DiceSideEnum.CONVERSATION, DiceSideEnum.CONVERSATION,
+				DiceSideEnum.CONVERSATION, DiceSideEnum.EXPENCE,
+				DiceSideEnum.EXPENCE);
 
 		super.controller.flow().proceedToNextPhase();
 

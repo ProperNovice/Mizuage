@@ -31,6 +31,7 @@ public class Dice implements EventHandlerAble {
 		this.selected = new ImageView("dice/selected.png");
 		this.selected.setWidth(Dimensions.DICE_SELECTED.x());
 		this.selected.setVisible(false);
+		this.selected.setEventHandler(this);
 
 	}
 

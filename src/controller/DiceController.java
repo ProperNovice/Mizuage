@@ -108,4 +108,22 @@ public class DiceController {
 
 	}
 
+	public void testSetDiceRolls(DiceSideEnum... diceSideEnum) {
+
+		int index = 0;
+		Dice dice = null;
+
+		for (DiceSideEnum sideEnum : diceSideEnum) {
+
+			dice = this.dice.get(index);
+
+			while (!dice.getDiceSiceEnumShowing().equals(sideEnum))
+				dice.roll();
+
+			index++;
+
+		}
+
+	}
+
 }

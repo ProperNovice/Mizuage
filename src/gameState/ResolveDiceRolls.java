@@ -13,13 +13,22 @@ public class ResolveDiceRolls extends GameState {
 
 	@Override
 	public void handleGameStateChange() {
-		
+
 		super.controller.diceController().diselectAllDice();
 
 	}
 
 	@Override
 	protected void handleDiceNonExpensePressed(Dice dice) {
+
+		if (dice.isSelected()) {
+
+			dice.reverseSelected();
+			return;
+
+		}
+
+		dice.reverseSelected();
 
 	}
 
