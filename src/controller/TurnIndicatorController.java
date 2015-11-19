@@ -1,5 +1,6 @@
 package controller;
 
+import interfaces.StartNextTurn;
 import turn.TurnIndicator;
 import turn.TurnIndicatorGeisha;
 import turn.TurnIndicatorMaiko;
@@ -11,7 +12,8 @@ import enums.Dimensions;
 
 public class TurnIndicatorController {
 
-	ArrayList<ArrayList<TurnIndicator>> turnIndicators = new ArrayList<>();
+	private ArrayList<ArrayList<TurnIndicator>> turnIndicators = new ArrayList<>();
+	private StartNextTurn startNextTurn = new StartFirstTurn();
 
 	public TurnIndicatorController() {
 
@@ -88,6 +90,39 @@ public class TurnIndicatorController {
 
 	public Class<? extends TurnIndicator> getCurrentTurnIndicator() {
 		return this.turnIndicators.getFirst().getFirst().getClass();
+	}
+
+	public void startNextTurn() {
+		this.startNextTurn.startNextTurn();
+	}
+
+	private class StartFirstTurn implements StartNextTurn {
+
+		@Override
+		public void startNextTurn() {
+
+			turnIndicators.getFirst().getFirst().setActive();
+			startNextTurn = new StartConsecutiveTurn();
+
+		}
+
+	}
+
+	private class StartConsecutiveTurn implements StartNextTurn {
+
+		@Override
+		public void startNextTurn() {
+
+			turnIndicators.getFirst().getFirst().setVisibleFalse();
+			turnIndicators.getFirst().removeFirst();
+
+			if (turnIndicators.getFirst().isEmpty())
+				turnIndicators.removeFirst();
+
+			turnIndicators.getFirst().getFirst().setActive();
+
+		}
+
 	}
 
 }

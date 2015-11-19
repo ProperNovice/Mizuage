@@ -17,7 +17,7 @@ public class DiceSide {
 
 	private void createImage() {
 
-		String path = "diceSide/" + this.diceSideEnum.fileName() + ".png";
+		String path = "dice/side/" + this.diceSideEnum.fileName() + ".png";
 		this.image = new Image(path);
 
 	}

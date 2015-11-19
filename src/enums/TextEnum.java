@@ -1,6 +1,10 @@
 package enums;
 
 public enum TextEnum {
+	
+	START_NEXT_TURN("Start next turn", TextTypeEnum.OPTION),
+	SELECT_DICE_TO_KEEP("Select dice to keep", TextTypeEnum.INDICATOR),
+	ROLL_DICE("Roll dice", TextTypeEnum.OPTION),
 
 	;
 

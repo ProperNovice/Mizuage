@@ -3,6 +3,8 @@ package gameState;
 import instances.Instances;
 import javafx.scene.input.KeyCode;
 import controller.Controller;
+import dice.Dice;
+import enums.DiceSideEnum;
 import enums.GameStateEnum;
 import enums.TextEnum;
 
@@ -16,6 +18,21 @@ public class GameState {
 	}
 
 	public void handleGameStateChange() {
+
+	}
+
+	public void handleDicePressed(Dice dice) {
+
+		DiceSideEnum diceSideEnum = dice.getDiceSiceEnumShowing();
+
+		if (diceSideEnum.equals(DiceSideEnum.EXPENCE))
+			return;
+
+		handleDiceNonExpensePressed(dice);
+
+	}
+
+	protected void handleDiceNonExpensePressed(Dice dice) {
 
 	}
 

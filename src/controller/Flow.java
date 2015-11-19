@@ -11,6 +11,8 @@ public class Flow {
 
 	public Flow() {
 
+		createGameStateTurn();
+
 	}
 
 	public void proceedToNextPhase() {
@@ -22,6 +24,19 @@ public class Flow {
 
 		GameStateEnum gameStateEnum = this.gameStateResolving.removeFirst();
 		controller.gameStateController().setGameState(gameStateEnum);
+
+	}
+
+	public void addGameStateFirst(GameStateEnum gameStateEnum) {
+		this.gameStateResolving.addFirst(gameStateEnum);
+	}
+
+	public void createGameStateTurn() {
+
+		this.gameStateTurn.add(GameStateEnum.START_NEXT_TURN);
+		this.gameStateTurn.add(GameStateEnum.SELECT_DICE_OR_CONTINUE);
+		this.gameStateTurn.add(GameStateEnum.SELECT_DICE_OR_CONTINUE);
+		this.gameStateTurn.add(GameStateEnum.RESOLVE_DICE_ROLLS);
 
 	}
 
