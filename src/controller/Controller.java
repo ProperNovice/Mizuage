@@ -10,6 +10,7 @@ public class Controller {
 	private SkillColumnController skillColumnController = null;
 	private CoinController coinController = null;
 	private TurnIndicatorController turnIndicatorController = null;
+	private DiceController diceController = null;
 
 	public Controller() {
 		createInstances();
@@ -25,6 +26,7 @@ public class Controller {
 		this.skillColumnController = new SkillColumnController();
 		this.coinController = new CoinController();
 		this.turnIndicatorController = new TurnIndicatorController();
+		this.diceController = new DiceController();
 
 	}
 
@@ -50,6 +52,10 @@ public class Controller {
 
 	public TurnIndicatorController turnIndicatorController() {
 		return this.turnIndicatorController;
+	}
+
+	public DiceController diceController() {
+		return this.diceController;
 	}
 
 }

@@ -44,7 +44,7 @@ public class CoinController {
 			this.coinsPlus.get(counter).relocate(x, y);
 			this.coinsMinus.get(counter).relocate(x, y);
 
-			x += Dimensions.COIN.x() + Dimensions.GAP_BETWEEN_COLUMNS.x();
+			x += Dimensions.COIN.x();
 
 			if (counter % coinsInRow != coinsInRow - 1)
 				continue;

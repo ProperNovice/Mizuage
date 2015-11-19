@@ -28,8 +28,7 @@ public class SkillColumnController {
 
 			this.skillColumns.add(new SkillColumn(0, x));
 
-			x += Dimensions.SKILL_COLUMN.x()
-					+ Dimensions.GAP_BETWEEN_COLUMNS.x();
+			x += Dimensions.SKILL_COLUMN.x();
 
 		}
 
@@ -37,8 +36,7 @@ public class SkillColumnController {
 
 			this.skillColumns.add(new SkillColumn(1, x));
 
-			x += Dimensions.SKILL_COLUMN.x()
-					+ Dimensions.GAP_BETWEEN_COLUMNS.x();
+			x += Dimensions.SKILL_COLUMN.x();
 
 		}
 
@@ -46,8 +44,7 @@ public class SkillColumnController {
 
 			this.skillColumns.add(new SkillColumn(2, x));
 
-			x += Dimensions.SKILL_COLUMN.x()
-					+ Dimensions.GAP_BETWEEN_COLUMNS.x();
+			x += Dimensions.SKILL_COLUMN.x();
 
 		}
 
@@ -55,8 +52,7 @@ public class SkillColumnController {
 
 			this.skillColumns.add(new SkillColumn(3, x));
 
-			x += Dimensions.SKILL_COLUMN.x()
-					+ Dimensions.GAP_BETWEEN_COLUMNS.x();
+			x += Dimensions.SKILL_COLUMN.x();
 
 		}
 

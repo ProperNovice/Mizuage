@@ -1,6 +1,6 @@
 package dice;
 
-import javafx.scene.image.Image;
+import utils.Image;
 import enums.DiceSideEnum;
 
 public class DiceSide {
@@ -17,8 +17,7 @@ public class DiceSide {
 
 	private void createImage() {
 
-		String path = "/images/diceSide/" + this.diceSideEnum.fileName()
-				+ ".png";
+		String path = "diceSide/" + this.diceSideEnum.fileName() + ".png";
 		this.image = new Image(path);
 
 	}

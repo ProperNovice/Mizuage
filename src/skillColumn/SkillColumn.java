@@ -47,8 +47,7 @@ public class SkillColumn {
 	}
 
 	private double getCoordinateY(int totalTokensInColumn) {
-		return this.y - Dimensions.GAP_BETWEEN_COLUMNS.y()
-				- totalTokensInColumn * Dimensions.SKILL_COLUMN_TOKEN.y();
+		return this.y - totalTokensInColumn * Dimensions.SKILL_COLUMN_TOKEN.y();
 	}
 
 	public int getMoney() {

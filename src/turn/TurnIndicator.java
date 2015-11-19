@@ -41,8 +41,8 @@ public class TurnIndicator {
 		this.imageView.setImage(this.active);
 	}
 
-	public void setVisible(boolean visibility) {
-		this.imageView.setVisible(visibility);
+	public void setVisibleFalse() {
+		this.imageView.setVisible(false);
 	}
 
 	public void relocate(double x, double y) {
