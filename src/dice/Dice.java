@@ -1,6 +1,8 @@
 package dice;
 
 import instances.Instances;
+import utils.Animation;
+import utils.Animation.AnimationSynch;
 import utils.ArrayList;
 import utils.EventHandler.EventHandlerAble;
 import utils.ImageView;
@@ -89,6 +91,20 @@ public class Dice implements EventHandlerAble {
 
 	public boolean isSelected() {
 		return this.isSelected;
+	}
+
+	public void animateUp() {
+		Animation
+				.animate(this.dice, this.x, this.y, AnimationSynch.SYNCHRONOUS);
+		Animation.animate(this.selected, this.x, this.y,
+				AnimationSynch.SYNCHRONOUS);
+	}
+
+	public void animateDown() {
+		Animation.animate(this.dice, this.x, this.y + Dimensions.DICE.y()
+				+ Dimensions.GAP_BETWEEN_DICE.y(), AnimationSynch.SYNCHRONOUS);
+		Animation.animate(this.selected, this.x, this.y + Dimensions.DICE.y()
+				+ Dimensions.GAP_BETWEEN_DICE.y(), AnimationSynch.SYNCHRONOUS);
 	}
 
 }

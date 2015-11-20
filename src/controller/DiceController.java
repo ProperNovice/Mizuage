@@ -1,6 +1,7 @@
 package controller;
 
 import utils.ArrayList;
+import utils.Lock;
 import dice.Dice;
 import dice.RollDiceImage;
 import enums.Coordinates;
@@ -9,7 +10,8 @@ import enums.Dimensions;
 
 public class DiceController {
 
-	private ArrayList<Dice> dice = new ArrayList<>();
+	private ArrayList<Dice> diceActive = new ArrayList<>();
+	private ArrayList<Dice> diceUsed = new ArrayList<>();
 	private ArrayList<RollDiceImage> rollDiceImages = new ArrayList<>();
 
 	public DiceController() {
@@ -30,7 +32,7 @@ public class DiceController {
 			dice = new Dice();
 
 			dice.relocate(x, y);
-			this.dice.add(dice);
+			this.diceActive.add(dice);
 
 			x += Dimensions.DICE.x();
 			x += Dimensions.GAP_BETWEEN_DICE.x();
@@ -59,16 +61,17 @@ public class DiceController {
 
 	public void rollDiceAll() {
 
-		for (Dice dice : this.dice)
+		for (Dice dice : this.diceActive)
 			dice.roll();
 
 		updateRollTimeImages();
+		addDiceToUsedAnimateLock();
 
 	}
 
 	public void rollDiceNonExpenseNonSelected() {
 
-		for (Dice dice : this.dice) {
+		for (Dice dice : this.diceActive) {
 
 			DiceSideEnum diceSideEnum = dice.getDiceSiceEnumShowing();
 
@@ -83,6 +86,7 @@ public class DiceController {
 		}
 
 		updateRollTimeImages();
+		addDiceToUsedAnimateLock();
 
 	}
 
@@ -102,7 +106,7 @@ public class DiceController {
 
 	public void diselectAllDice() {
 
-		for (Dice dice : this.dice)
+		for (Dice dice : this.diceActive)
 			if (dice.isSelected())
 				dice.reverseSelected();
 
@@ -115,7 +119,7 @@ public class DiceController {
 
 		for (DiceSideEnum sideEnum : diceSideEnum) {
 
-			dice = this.dice.get(index);
+			dice = this.diceActive.get(index);
 
 			while (!dice.getDiceSiceEnumShowing().equals(sideEnum))
 				dice.roll();
@@ -124,6 +128,33 @@ public class DiceController {
 
 		}
 
+	}
+
+	private void addDiceToUsedAnimateLock() {
+
+		boolean lock = false;
+
+		for (Dice dice : this.diceActive) {
+
+			if (!dice.getDiceSiceEnumShowing().equals(DiceSideEnum.EXPENCE))
+				continue;
+
+			if (this.diceUsed.contains(dice))
+				continue;
+
+			lock = true;
+			this.diceUsed.add(dice);
+			dice.animateDown();
+
+		}
+
+		if (lock)
+			Lock.lock();
+
+	}
+
+	public void clearDiceUsed() {
+		this.diceUsed.clear();
 	}
 
 }

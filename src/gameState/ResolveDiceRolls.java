@@ -1,7 +1,6 @@
 package gameState;
 
 import javafx.scene.input.KeyCode;
-import dice.Dice;
 import enums.GameStateEnum;
 import enums.TextEnum;
 
@@ -15,20 +14,6 @@ public class ResolveDiceRolls extends GameState {
 	public void handleGameStateChange() {
 
 		super.controller.diceController().diselectAllDice();
-
-	}
-
-	@Override
-	protected void handleDiceNonExpensePressed(Dice dice) {
-
-		if (dice.isSelected()) {
-
-			dice.reverseSelected();
-			return;
-
-		}
-
-		dice.reverseSelected();
 
 	}
 
