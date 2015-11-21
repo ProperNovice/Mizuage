@@ -13,7 +13,7 @@ public class RollDiceImage {
 
 	private void create() {
 
-		this.imageView = new ImageView("/dice/roll.png");
+		this.imageView = new ImageView("dice/roll.png");
 		this.imageView.setHeight(Dimensions.DICE.y());
 		this.imageView.setVisible(false);
 

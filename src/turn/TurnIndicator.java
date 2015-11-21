@@ -22,7 +22,7 @@ public class TurnIndicator {
 
 	private void createImageView() {
 
-		this.path = "/turn/" + this.path;
+		this.path = "turn/" + this.path;
 
 		this.active = new Image(this.path + "Active.png");
 		this.nonActive = new Image(this.path + "NonActive.png");
