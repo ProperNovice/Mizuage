@@ -7,4 +7,9 @@ public class TurnIndicatorMizuage extends TurnIndicator {
 		super.path = "z";
 	}
 
+	@Override
+	public int servicesNeededForCoin() {
+		return -1;
+	}
+
 }

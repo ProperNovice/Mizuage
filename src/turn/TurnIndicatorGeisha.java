@@ -7,4 +7,9 @@ public class TurnIndicatorGeisha extends TurnIndicator {
 		super.path = "g";
 	}
 
+	@Override
+	public int servicesNeededForCoin() {
+		return 1;
+	}
+
 }

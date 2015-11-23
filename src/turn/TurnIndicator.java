@@ -6,14 +6,14 @@ import utils.Image;
 import utils.ImageView;
 import enums.Dimensions;
 
-public class TurnIndicator {
+public abstract class TurnIndicator {
 
 	private ImageView imageView = null;
 	private Image active = null;
 	private Image nonActive = null;
 	protected String path = null;
 
-	protected TurnIndicator() {
+	public TurnIndicator() {
 
 		createPath();
 		createImageView();
@@ -53,5 +53,7 @@ public class TurnIndicator {
 		Animation.animate(this.imageView, endingX, endingY,
 				AnimationSynch.SYNCHRONOUS);
 	}
+
+	public abstract int servicesNeededForCoin();
 
 }

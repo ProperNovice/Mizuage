@@ -7,4 +7,9 @@ public class TurnIndicatorMaiko extends TurnIndicator {
 		super.path = "m";
 	}
 
+	@Override
+	public int servicesNeededForCoin() {
+		return 2;
+	}
+
 }

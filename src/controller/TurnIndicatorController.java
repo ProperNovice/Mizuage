@@ -88,10 +88,6 @@ public class TurnIndicatorController {
 
 	}
 
-	public Class<? extends TurnIndicator> getCurrentTurnIndicator() {
-		return this.turnIndicators.getFirst().getFirst().getClass();
-	}
-
 	public void startNextTurn() {
 		this.startNextTurn.startNextTurn();
 	}
@@ -123,6 +119,11 @@ public class TurnIndicatorController {
 
 		}
 
+	}
+
+	public int getServicesNeededForCoin() {
+		return this.turnIndicators.getFirst().getFirst()
+				.servicesNeededForCoin();
 	}
 
 }

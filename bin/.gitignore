@@ -1,14 +1,3 @@
-/coin/
 /controller/
-/dice/
-/enums/
 /gameState/
-/gui/
-/images/
-/instances/
-/interfaces/
-/model/
-/mp3/
-/skillColumn/
 /turn/
-/utils/

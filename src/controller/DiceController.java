@@ -5,6 +5,7 @@ import utils.Lock;
 import dice.Dice;
 import dice.RollDiceImage;
 import enums.Coordinates;
+import enums.DiceResults;
 import enums.DiceSideEnum;
 import enums.Dimensions;
 
@@ -65,7 +66,7 @@ public class DiceController {
 			dice.roll();
 
 		updateRollTimeImages();
-		addDiceToUsedAnimateLock();
+		addDiceExpenseToUsedAnimateLock();
 
 	}
 
@@ -86,7 +87,7 @@ public class DiceController {
 		}
 
 		updateRollTimeImages();
-		addDiceToUsedAnimateLock();
+		addDiceExpenseToUsedAnimateLock();
 
 	}
 
@@ -128,21 +129,23 @@ public class DiceController {
 
 		}
 
+		addDiceExpenseToUsedAnimateLock();
+
 	}
 
-	private void addDiceToUsedAnimateLock() {
+	private void addDiceExpenseToUsedAnimateLock() {
 
 		boolean lock = false;
 
-		for (Dice dice : this.diceActive) {
+		ArrayList<Dice> diceActiveTemp = new ArrayList<>(this.diceActive);
+
+		for (Dice dice : diceActiveTemp) {
 
 			if (!dice.getDiceSiceEnumShowing().equals(DiceSideEnum.EXPENCE))
 				continue;
 
-			if (this.diceUsed.contains(dice))
-				continue;
-
 			lock = true;
+			this.diceActive.remove(dice);
 			this.diceUsed.add(dice);
 			dice.animateDown();
 
@@ -153,8 +156,140 @@ public class DiceController {
 
 	}
 
-	public void clearDiceUsed() {
+	public void clearDiceUsedAnimateLock() {
+
+		if (this.diceUsed.isEmpty())
+			return;
+
+		this.diceActive.addAll(this.diceUsed);
 		this.diceUsed.clear();
+
+		for (Dice dice : this.diceActive)
+			dice.animateUp();
+
+		Lock.lock();
+
 	}
 
+	public ArrayList<DiceResults> getDiceResults(int servicesNeeded) {
+
+		ArrayList<DiceResults> diceResults = new ArrayList<>();
+
+		if (resolveServices(servicesNeeded))
+			diceResults.add(DiceResults.SERVICE);
+
+		if (resolveOneOfEach())
+			diceResults.add(DiceResults.ONE_OF_EACH);
+
+		if (resolveOfKind(5))
+			diceResults.add(DiceResults.FIVE_OF_A_KIND);
+
+		if (resolveOfKind(4))
+			diceResults.add(DiceResults.FOUR_OF_A_KIND);
+
+		if (resolveOfKind(3))
+			diceResults.add(DiceResults.THREE_OF_A_KIND);
+
+		return diceResults;
+
+	}
+
+	private boolean resolveServices(int servicesNeeded) {
+
+		int services = 0;
+
+		for (Dice dice : this.diceActive)
+			if (dice.getDiceSiceEnumShowing().equals(DiceSideEnum.SERVICE))
+				services++;
+
+		if (services >= servicesNeeded)
+			return true;
+		else
+			return false;
+
+	}
+
+	private boolean resolveOneOfEach() {
+
+		int conversation = 0;
+		int dance = 0;
+		int music = 0;
+
+		for (Dice dice : this.diceActive) {
+
+			switch (dice.getDiceSiceEnumShowing()) {
+
+			case CONVERSATION:
+				conversation++;
+				continue;
+
+			case DANCE:
+				dance++;
+				continue;
+
+			case MUSIC:
+				music++;
+				continue;
+
+			default:
+				continue;
+
+			}
+
+		}
+
+		if (conversation == 0)
+			return false;
+
+		if (dance == 0)
+			return false;
+
+		if (music == 0)
+			return false;
+
+		return true;
+
+	}
+
+	public boolean resolveOfKind(int times) {
+
+		int conversation = 0;
+		int dance = 0;
+		int music = 0;
+
+		for (Dice dice : this.diceActive) {
+
+			switch (dice.getDiceSiceEnumShowing()) {
+
+			case CONVERSATION:
+				conversation++;
+				continue;
+
+			case DANCE:
+				dance++;
+				continue;
+
+			case MUSIC:
+				music++;
+				continue;
+
+			default:
+				continue;
+
+			}
+
+		}
+
+		if (conversation >= times)
+			return true;
+
+		if (dance >= times)
+			return true;
+
+		if (music >= times)
+			return true;
+
+		return false;
+
+	}
 }
