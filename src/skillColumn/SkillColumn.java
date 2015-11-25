@@ -1,7 +1,9 @@
 package skillColumn;
 
+import utils.ArrayList;
 import utils.ImageView;
 import enums.Coordinates;
+import enums.DiceSideEnum;
 import enums.Dimensions;
 
 public class SkillColumn {
@@ -9,6 +11,7 @@ public class SkillColumn {
 	private int money;
 	private ImageView imageView = null;
 	private double x, y = Coordinates.SKILL_COLUMN.y();
+	private ArrayList<SkillColumnToken> skillColumnTokens = new ArrayList<>();
 
 	public SkillColumn(int money, double x) {
 
@@ -28,26 +31,61 @@ public class SkillColumn {
 
 	}
 
-	public void relocateToken(SkillColumnToken skillColumnToken,
-			int totalTokensInColumn) {
+	public void addTokenRelocate(SkillColumnToken skillColumnToken) {
 
-		double y = getCoordinateY(totalTokensInColumn);
+		this.skillColumnTokens.add(skillColumnToken);
 
-		skillColumnToken.relocate(this.x, y);
-
-	}
-
-	public void addTokenAnimate(SkillColumnToken skillColumnToken,
-			int totalTokensInColumn) {
-
-		double y = getCoordinateY(totalTokensInColumn);
-
-		skillColumnToken.animate(this.x, y);
+		skillColumnToken.relocate(this.x,
+				this.y - this.skillColumnTokens.size()
+						* Dimensions.SKILL_COLUMN_TOKEN.y());
 
 	}
 
-	private double getCoordinateY(int totalTokensInColumn) {
-		return this.y - totalTokensInColumn * Dimensions.SKILL_COLUMN_TOKEN.y();
+	public void addTokenAnimate(SkillColumnToken skillColumnToken) {
+
+		this.skillColumnTokens.add(skillColumnToken);
+		rearrangeSkillColumnTokensAnimate();
+
+	}
+
+	private void rearrangeSkillColumnTokensAnimate() {
+
+		double y = this.y - Dimensions.SKILL_COLUMN_TOKEN.y();
+
+		for (SkillColumnToken skillColumnToken : this.skillColumnTokens) {
+
+			skillColumnToken.animate(this.x, y);
+
+			y -= Dimensions.SKILL_COLUMN_TOKEN.y();
+
+		}
+
+	}
+
+	public boolean containsSkillColumnToken(DiceSideEnum diceSideEnum) {
+
+		for (SkillColumnToken skillColumnToken : this.skillColumnTokens)
+			if (skillColumnToken.getDiceSideEnum().equals(diceSideEnum))
+				return true;
+
+		return false;
+
+	}
+
+	public SkillColumnToken removeSkillColumnTokenRearrange(
+			DiceSideEnum diceSideEnum) {
+
+		SkillColumnToken skillColumnToken = null;
+
+		for (SkillColumnToken skillColumnTokenTemp : this.skillColumnTokens)
+			if (skillColumnTokenTemp.getDiceSideEnum().equals(diceSideEnum))
+				skillColumnToken = skillColumnTokenTemp;
+
+		this.skillColumnTokens.remove(skillColumnToken);
+		rearrangeSkillColumnTokensAnimate();
+
+		return skillColumnToken;
+
 	}
 
 	public int getMoney() {

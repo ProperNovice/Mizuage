@@ -26,6 +26,17 @@ public class HashMap<K, V> {
 
 	}
 
+	public ArrayList<K> getKeys() {
+
+		ArrayList<K> keys = new ArrayList<>();
+
+		for (HashMapObject hashMapObject : this.hashMap)
+			keys.add(hashMapObject.getKey());
+
+		return keys;
+
+	}
+
 	public K getKey(V value) {
 
 		for (HashMapObject hashMapObject : this.hashMap)
@@ -35,6 +46,17 @@ public class HashMap<K, V> {
 		Logger.log("value not found, returning null");
 
 		return null;
+
+	}
+
+	public ArrayList<V> getValues() {
+
+		ArrayList<V> values = new ArrayList<>();
+
+		for (HashMapObject hashMapObject : this.hashMap)
+			values.add(hashMapObject.getValue());
+
+		return values;
 
 	}
 

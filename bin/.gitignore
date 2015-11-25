@@ -1,3 +1,7 @@
 /controller/
 /gameState/
 /turn/
+/enums/
+/gui/
+/skillColumn/
+/utils/

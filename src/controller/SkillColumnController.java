@@ -3,7 +3,6 @@ package controller;
 import skillColumn.SkillColumn;
 import skillColumn.SkillColumnToken;
 import utils.ArrayList;
-import utils.HashMap;
 import enums.Coordinates;
 import enums.DiceSideEnum;
 import enums.Dimensions;
@@ -11,7 +10,6 @@ import enums.Dimensions;
 public class SkillColumnController {
 
 	private ArrayList<SkillColumn> skillColumns = new ArrayList<>();
-	private HashMap<SkillColumnToken, Integer> skillColumnTokens = new HashMap<>();
 
 	public SkillColumnController() {
 
@@ -63,16 +61,44 @@ public class SkillColumnController {
 		SkillColumnToken skillColumnToken = null;
 
 		skillColumnToken = new SkillColumnToken(DiceSideEnum.MUSIC);
-		this.skillColumnTokens.addEntry(skillColumnToken, 0);
-		this.skillColumns.get(0).relocateToken(skillColumnToken, 1);
+		this.skillColumns.get(0).addTokenRelocate(skillColumnToken);
 
 		skillColumnToken = new SkillColumnToken(DiceSideEnum.DANCE);
-		this.skillColumnTokens.addEntry(skillColumnToken, 0);
-		this.skillColumns.get(0).relocateToken(skillColumnToken, 2);
+		this.skillColumns.get(0).addTokenRelocate(skillColumnToken);
 
 		skillColumnToken = new SkillColumnToken(DiceSideEnum.CONVERSATION);
-		this.skillColumnTokens.addEntry(skillColumnToken, 0);
-		this.skillColumns.get(0).relocateToken(skillColumnToken, 3);
+		this.skillColumns.get(0).addTokenRelocate(skillColumnToken);
+
+	}
+
+	public void advanceSkillColumnToken(DiceSideEnum diceSideEnum, int times) {
+
+		int indexSkillColumnFrom = -1;
+		int indexSkillColumnTo = -1;
+
+		for (SkillColumn skillColumn : this.skillColumns) {
+
+			if (!skillColumn.containsSkillColumnToken(diceSideEnum))
+				continue;
+
+			indexSkillColumnFrom = this.skillColumns.indexOf(skillColumn);
+			break;
+
+		}
+
+		indexSkillColumnTo += times;
+		indexSkillColumnTo = (int) Math.min(this.skillColumns.size() - 1,
+				indexSkillColumnTo);
+
+		if (indexSkillColumnFrom == indexSkillColumnTo)
+			return;
+
+		SkillColumnToken skillColumnToken = this.skillColumns.get(
+				indexSkillColumnFrom).removeSkillColumnTokenRearrange(
+				diceSideEnum);
+
+		this.skillColumns.get(indexSkillColumnTo).addTokenAnimate(
+				skillColumnToken);
 
 	}
 

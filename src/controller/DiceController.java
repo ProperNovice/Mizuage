@@ -145,9 +145,8 @@ public class DiceController {
 				continue;
 
 			lock = true;
-			this.diceActive.remove(dice);
-			this.diceUsed.add(dice);
-			dice.animateDown();
+
+			addDiceFromActiveToUsedAnimate(dice);
 
 		}
 
@@ -175,26 +174,26 @@ public class DiceController {
 
 		ArrayList<DiceResults> diceResults = new ArrayList<>();
 
-		if (resolveServices(servicesNeeded))
-			diceResults.add(DiceResults.SERVICE);
-
-		if (resolveOneOfEach())
-			diceResults.add(DiceResults.ONE_OF_EACH);
-
-		if (resolveOfKind(5))
+		if (isResolvedOfKind(5))
 			diceResults.add(DiceResults.FIVE_OF_A_KIND);
 
-		if (resolveOfKind(4))
+		if (isResolvedOfKind(4))
 			diceResults.add(DiceResults.FOUR_OF_A_KIND);
 
-		if (resolveOfKind(3))
+		if (isResolvedOfKind(3))
 			diceResults.add(DiceResults.THREE_OF_A_KIND);
+
+		if (isResolvedOneOfEach())
+			diceResults.add(DiceResults.ONE_OF_EACH);
+
+		if (isResolvedServices(servicesNeeded))
+			diceResults.add(DiceResults.SERVICE);
 
 		return diceResults;
 
 	}
 
-	private boolean resolveServices(int servicesNeeded) {
+	private boolean isResolvedServices(int servicesNeeded) {
 
 		int services = 0;
 
@@ -209,7 +208,7 @@ public class DiceController {
 
 	}
 
-	private boolean resolveOneOfEach() {
+	private boolean isResolvedOneOfEach() {
 
 		int conversation = 0;
 		int dance = 0;
@@ -251,7 +250,7 @@ public class DiceController {
 
 	}
 
-	public boolean resolveOfKind(int times) {
+	private boolean isResolvedOfKind(int times) {
 
 		int conversation = 0;
 		int dance = 0;
@@ -292,4 +291,86 @@ public class DiceController {
 		return false;
 
 	}
+
+	private void addOfKindDiceToUsed(DiceSideEnum diceSideEnum, int times) {
+
+		ArrayList<Dice> diceActiveTemp = new ArrayList<>(this.diceActive);
+
+		for (Dice dice : diceActiveTemp) {
+
+			if (!dice.getDiceSiceEnumShowing().equals(diceSideEnum))
+				continue;
+
+			times--;
+
+			addDiceFromActiveToUsedAnimate(dice);
+
+			if (times > 0)
+				continue;
+
+			break;
+
+		}
+
+	}
+
+	public DiceSideEnum resolveOfKindAnimate(int times) {
+
+		DiceSideEnum diceSideEnum = null;
+		int conversation = 0;
+		int dance = 0;
+		int music = 0;
+
+		for (Dice dice : this.diceActive) {
+
+			switch (dice.getDiceSiceEnumShowing()) {
+
+			case CONVERSATION:
+				conversation++;
+				continue;
+
+			case DANCE:
+				dance++;
+				continue;
+
+			case MUSIC:
+				music++;
+				continue;
+
+			default:
+				continue;
+
+			}
+
+		}
+
+		if (conversation >= times) {
+
+			addOfKindDiceToUsed(DiceSideEnum.CONVERSATION, times);
+			diceSideEnum = DiceSideEnum.CONVERSATION;
+
+		} else if (dance >= times) {
+
+			addOfKindDiceToUsed(DiceSideEnum.DANCE, times);
+			diceSideEnum = DiceSideEnum.DANCE;
+
+		} else if (music >= times) {
+
+			addOfKindDiceToUsed(DiceSideEnum.MUSIC, times);
+			diceSideEnum = DiceSideEnum.MUSIC;
+
+		}
+
+		return diceSideEnum;
+
+	}
+
+	private void addDiceFromActiveToUsedAnimate(Dice dice) {
+
+		this.diceActive.remove(dice);
+		this.diceUsed.add(dice);
+		dice.animateDown();
+
+	}
+
 }
