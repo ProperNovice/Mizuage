@@ -3,13 +3,15 @@ package controller;
 import dice.Dice;
 import enums.GameStateEnum;
 import enums.TextEnum;
-import gameState.Animating;
+import gameState.ChooseSkillToIncrease;
 import gameState.GameState;
 import gameState.ResolveDiceRolls;
 import gameState.SelectDiceOrContinue;
+import gameState.SelectDiceToKeep;
 import gameState.StartGame;
 import gameState.StartNextTurn;
 import javafx.scene.input.KeyCode;
+import skillColumn.SkillColumnToken;
 import utils.ArrayList;
 import utils.Logger;
 
@@ -21,12 +23,15 @@ public class GameStateController {
 	public GameStateController() {
 
 		this.gameStates.add(new StartGame(GameStateEnum.START_GAME));
-		this.gameStates.add(new Animating(GameStateEnum.ANIMATING));
 		this.gameStates.add(new StartNextTurn(GameStateEnum.START_NEXT_TURN));
 		this.gameStates.add(new SelectDiceOrContinue(
 				GameStateEnum.SELECT_DICE_OR_CONTINUE));
 		this.gameStates.add(new ResolveDiceRolls(
 				GameStateEnum.RESOLVE_DICE_ROLLS));
+		this.gameStates.add(new ChooseSkillToIncrease(
+				GameStateEnum.CHOOSE_SKILL_TO_INCREASE));
+		this.gameStates.add(new SelectDiceToKeep(
+				GameStateEnum.SELECT_DICE_TO_KEEP));
 
 	}
 
@@ -61,6 +66,10 @@ public class GameStateController {
 
 	public void handleDicePressed(Dice dice) {
 		this.currentGameState.handleDicePressed(dice);
+	}
+
+	public void handleSkillColumnTokenPressed(SkillColumnToken skillColumnToken) {
+		this.currentGameState.handleSkillColumnTokenPressed(skillColumnToken);
 	}
 
 }

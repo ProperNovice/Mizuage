@@ -13,9 +13,11 @@ public class StartGame extends GameState {
 	public void handleGameStateChange() {
 
 		super.controller.diceController().testSetDiceRolls(
-				DiceSideEnum.DANCE, DiceSideEnum.DANCE,
 				DiceSideEnum.DANCE, DiceSideEnum.CONVERSATION,
-				DiceSideEnum.EXPENCE);
+				DiceSideEnum.MUSIC, DiceSideEnum.DANCE,
+				DiceSideEnum.DANCE);
+		
+		super.controller.coinController().removeCoinsUpdatePanel(4);
 
 		super.controller.flow().proceedToNextPhase();
 

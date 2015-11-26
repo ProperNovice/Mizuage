@@ -37,7 +37,7 @@ public class StartNextTurn extends GameState {
 		super.controller.textController().concealText();
 
 		super.controller.turnIndicatorController().startNextTurn();
-		super.controller.diceController().rollDiceAll();
+		super.controller.diceController().rollDiceNonSelected();
 		super.controller.diceController().clearDiceUsedAnimateLock();
 		super.controller.flow().proceedToNextPhase();
 

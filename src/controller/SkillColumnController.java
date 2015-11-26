@@ -71,10 +71,10 @@ public class SkillColumnController {
 
 	}
 
-	public void advanceSkillColumnToken(DiceSideEnum diceSideEnum, int times) {
+	public void advanceSkillColumnTokenAnimate(DiceSideEnum diceSideEnum,
+			int times) {
 
 		int indexSkillColumnFrom = -1;
-		int indexSkillColumnTo = -1;
 
 		for (SkillColumn skillColumn : this.skillColumns) {
 
@@ -86,7 +86,7 @@ public class SkillColumnController {
 
 		}
 
-		indexSkillColumnTo += times;
+		int indexSkillColumnTo = indexSkillColumnFrom + times;
 		indexSkillColumnTo = (int) Math.min(this.skillColumns.size() - 1,
 				indexSkillColumnTo);
 

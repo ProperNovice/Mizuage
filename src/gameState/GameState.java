@@ -1,5 +1,6 @@
 package gameState;
 
+import skillColumn.SkillColumnToken;
 import instances.Instances;
 import javafx.scene.input.KeyCode;
 import controller.Controller;
@@ -8,7 +9,7 @@ import enums.DiceSideEnum;
 import enums.GameStateEnum;
 import enums.TextEnum;
 
-public class GameState {
+public abstract class GameState {
 
 	protected Controller controller = Instances.getControllerInstance();
 	private GameStateEnum gameStateEnum = null;
@@ -17,9 +18,7 @@ public class GameState {
 		this.gameStateEnum = gameStateEnum;
 	}
 
-	public void handleGameStateChange() {
-
-	}
+	public abstract void handleGameStateChange();
 
 	public void handleDicePressed(Dice dice) {
 
@@ -28,11 +27,15 @@ public class GameState {
 		if (diceSideEnum.equals(DiceSideEnum.EXPENCE))
 			return;
 
-		handleDiceNonExpensePressed(dice);
+		handleDiceActivePressed(dice);
 
 	}
 
-	protected void handleDiceNonExpensePressed(Dice dice) {
+	public void handleSkillColumnTokenPressed(SkillColumnToken skillColumnToken) {
+
+	}
+
+	protected void handleDiceActivePressed(Dice dice) {
 
 	}
 

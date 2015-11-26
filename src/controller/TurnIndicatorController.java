@@ -126,4 +126,14 @@ public class TurnIndicatorController {
 				.servicesNeededForCoin();
 	}
 
+	public int getOfKindTornIndicatorPoints(int times) {
+		return this.turnIndicators.getFirst().getFirst()
+				.ofKindSkillIncrease(times);
+	}
+
+	public int getOneOfEachSkillIncrease() {
+		return this.turnIndicators.getFirst().getFirst()
+				.oneOfEachSkillIncrease();
+	}
+
 }

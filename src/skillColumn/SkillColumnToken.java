@@ -1,12 +1,14 @@
 package skillColumn;
 
+import instances.Instances;
 import utils.Animation;
 import utils.Animation.AnimationSynch;
+import utils.EventHandler.EventHandlerAble;
 import utils.ImageView;
 import enums.DiceSideEnum;
 import enums.Dimensions;
 
-public class SkillColumnToken {
+public class SkillColumnToken implements EventHandlerAble {
 
 	private ImageView imageView = null;
 	private DiceSideEnum diceSideEnum = null;
@@ -24,6 +26,7 @@ public class SkillColumnToken {
 
 		this.imageView = new ImageView(path);
 		this.imageView.setWidth(Dimensions.SKILL_COLUMN.x());
+		this.imageView.setEventHandler(this);
 
 	}
 
@@ -37,6 +40,12 @@ public class SkillColumnToken {
 
 	public void relocate(double x, double y) {
 		this.imageView.relocate(x, y);
+	}
+
+	@Override
+	public void handleMouseButtonPressedPrimary() {
+		Instances.getControllerInstance().gameStateController()
+				.handleSkillColumnTokenPressed(this);
 	}
 
 }

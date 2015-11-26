@@ -11,6 +11,9 @@ public enum TextEnum {
 	FIVE_OF_A_KIND("Five of a kind", TextTypeEnum.OPTION),
 	SERVICE("Service", TextTypeEnum.OPTION),
 	CONTINUE("Continue", TextTypeEnum.OPTION),
+	CHOOSE_SKILL_TO_INCREASE("Choose skill\nto increase", TextTypeEnum.INDICATOR),
+	USE_DICE("Use dice", TextTypeEnum.INDICATOR),
+	
 	;
 
 	private String string = null;

@@ -23,14 +23,15 @@ public class ResolveDiceRolls extends GameState {
 				.getServicesNeededForCoin();
 
 		ArrayList<DiceResults> diceResults = super.controller.diceController()
-				.getDiceResults(servicesNeededForCoin);
+				.getDiceResultsFromActiveDice(servicesNeededForCoin);
 
 		if (diceResults.isEmpty()) {
-			// TODO
-			System.out.println("empty");
+			proceedToNextTurnPhase();
 			return;
-
 		}
+		
+		super.controller.textController()
+		.showText(TextEnum.USE_DICE);
 
 		for (DiceResults diceResultsTemp : diceResults) {
 
@@ -76,6 +77,7 @@ public class ResolveDiceRolls extends GameState {
 		switch (textEnum) {
 
 		case ONE_OF_EACH:
+			resolveOneOfEach();
 			break;
 
 		case THREE_OF_A_KIND:
@@ -91,9 +93,11 @@ public class ResolveDiceRolls extends GameState {
 			break;
 
 		case SERVICE:
+			resolveService();
 			break;
 
 		case CONTINUE:
+			proceedToNextTurnPhase();
 			break;
 
 		default:
@@ -103,23 +107,56 @@ public class ResolveDiceRolls extends GameState {
 
 	}
 
+	private void resolveOneOfEach() {
+
+		super.controller.diceController().resolveOneOfEachAnimate();
+		Lock.lock();
+
+		super.controller.flow().addGameStateFirst(
+				GameStateEnum.CHOOSE_SKILL_TO_INCREASE);
+		super.controller.flow().proceedToNextPhase();
+
+	}
+
+	private void resolveService() {
+
+		int servicesNeededForCoin = super.controller.turnIndicatorController()
+				.getServicesNeededForCoin();
+
+		super.controller.diceController().resolveServiceAnimate(
+				servicesNeededForCoin);
+		super.controller.coinController().addCoinsUpdatePanel(1);
+
+		Lock.lock();
+
+		handleGameStateChange();
+
+	}
+
 	private void resolveOfKind(int times) {
 
 		DiceSideEnum diceSideEnum = super.controller.diceController()
 				.resolveOfKindAnimate(times);
 
-		super.controller.skillColumnController().advanceSkillColumnToken(
-				diceSideEnum, times);
+		int timesToAdvance = super.controller.turnIndicatorController()
+				.getOfKindTornIndicatorPoints(times);
+
+		super.controller.skillColumnController()
+				.advanceSkillColumnTokenAnimate(diceSideEnum, timesToAdvance);
 
 		Lock.lock();
 
-		System.out.println("yo");
+		handleGameStateChange();
 
 	}
 
 	@Override
 	public void handleKeyPressed(KeyCode keyCode) {
 
+	}
+
+	private void proceedToNextTurnPhase() {
+		super.controller.flow().proceedToNextPhase();
 	}
 
 }

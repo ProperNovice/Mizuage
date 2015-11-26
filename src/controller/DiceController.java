@@ -60,7 +60,7 @@ public class DiceController {
 
 	}
 
-	public void rollDiceAll() {
+	public void rollDiceAll() { // TODO
 
 		for (Dice dice : this.diceActive)
 			dice.roll();
@@ -70,14 +70,9 @@ public class DiceController {
 
 	}
 
-	public void rollDiceNonExpenseNonSelected() {
+	public void rollDiceNonSelected() {
 
 		for (Dice dice : this.diceActive) {
-
-			DiceSideEnum diceSideEnum = dice.getDiceSiceEnumShowing();
-
-			if (diceSideEnum.equals(DiceSideEnum.EXPENCE))
-				continue;
 
 			if (dice.isSelected())
 				continue;
@@ -170,34 +165,54 @@ public class DiceController {
 
 	}
 
-	public ArrayList<DiceResults> getDiceResults(int servicesNeeded) {
+	public ArrayList<DiceResults> getDiceResultsFromSelectedDice(
+			int servicesNeeded) {
+
+		ArrayList<Dice> diceList = new ArrayList<>();
+
+		for (Dice dice : this.diceActive)
+			if (dice.isSelected())
+				diceList.add(dice);
+
+		return getDiceResultsFromDice(servicesNeeded, diceList);
+
+	}
+
+	public ArrayList<DiceResults> getDiceResultsFromActiveDice(
+			int servicesNeeded) {
+		return getDiceResultsFromDice(servicesNeeded, this.diceActive);
+	}
+
+	private ArrayList<DiceResults> getDiceResultsFromDice(int servicesNeeded,
+			ArrayList<Dice> diceList) {
 
 		ArrayList<DiceResults> diceResults = new ArrayList<>();
 
-		if (isResolvedOfKind(5))
+		if (isResolvedOfKind(5, diceList))
 			diceResults.add(DiceResults.FIVE_OF_A_KIND);
 
-		if (isResolvedOfKind(4))
+		if (isResolvedOfKind(4, diceList))
 			diceResults.add(DiceResults.FOUR_OF_A_KIND);
 
-		if (isResolvedOfKind(3))
+		if (isResolvedOfKind(3, diceList))
 			diceResults.add(DiceResults.THREE_OF_A_KIND);
 
-		if (isResolvedOneOfEach())
+		if (isResolvedOneOfEach(diceList))
 			diceResults.add(DiceResults.ONE_OF_EACH);
 
-		if (isResolvedServices(servicesNeeded))
+		if (isResolvedServices(servicesNeeded, diceList))
 			diceResults.add(DiceResults.SERVICE);
 
 		return diceResults;
 
 	}
 
-	private boolean isResolvedServices(int servicesNeeded) {
+	private boolean isResolvedServices(int servicesNeeded,
+			ArrayList<Dice> diceList) {
 
 		int services = 0;
 
-		for (Dice dice : this.diceActive)
+		for (Dice dice : diceList)
 			if (dice.getDiceSiceEnumShowing().equals(DiceSideEnum.SERVICE))
 				services++;
 
@@ -208,13 +223,13 @@ public class DiceController {
 
 	}
 
-	private boolean isResolvedOneOfEach() {
+	private boolean isResolvedOneOfEach(ArrayList<Dice> diceList) {
 
 		int conversation = 0;
 		int dance = 0;
 		int music = 0;
 
-		for (Dice dice : this.diceActive) {
+		for (Dice dice : diceList) {
 
 			switch (dice.getDiceSiceEnumShowing()) {
 
@@ -250,13 +265,13 @@ public class DiceController {
 
 	}
 
-	private boolean isResolvedOfKind(int times) {
+	private boolean isResolvedOfKind(int times, ArrayList<Dice> diceList) {
 
 		int conversation = 0;
 		int dance = 0;
 		int music = 0;
 
-		for (Dice dice : this.diceActive) {
+		for (Dice dice : diceList) {
 
 			switch (dice.getDiceSiceEnumShowing()) {
 
@@ -309,6 +324,57 @@ public class DiceController {
 				continue;
 
 			break;
+
+		}
+
+	}
+
+	public void resolveOneOfEachAnimate() {
+
+		ArrayList<DiceSideEnum> diceSideEnumList = new ArrayList<>();
+
+		diceSideEnumList.add(DiceSideEnum.CONVERSATION);
+		diceSideEnumList.add(DiceSideEnum.DANCE);
+		diceSideEnumList.add(DiceSideEnum.MUSIC);
+
+		ArrayList<Dice> diceActiveTemp = new ArrayList<>(this.diceActive);
+
+		DiceSideEnum diceSideEnum = null;
+
+		for (Dice dice : diceActiveTemp) {
+
+			diceSideEnum = dice.getDiceSiceEnumShowing();
+
+			if (!diceSideEnumList.contains(diceSideEnum))
+				continue;
+
+			diceSideEnumList.remove(diceSideEnum);
+			addDiceFromActiveToUsedAnimate(dice);
+
+			if (!diceSideEnumList.isEmpty())
+				continue;
+
+			break;
+
+		}
+
+	}
+
+	public void resolveServiceAnimate(int servicesNeeded) {
+
+		ArrayList<Dice> diceActiveTemp = new ArrayList<>(this.diceActive);
+
+		for (Dice dice : diceActiveTemp) {
+
+			if (!dice.getDiceSiceEnumShowing().equals(DiceSideEnum.SERVICE))
+				continue;
+
+			servicesNeeded--;
+
+			addDiceFromActiveToUsedAnimate(dice);
+
+			if (servicesNeeded == 0)
+				break;
 
 		}
 
@@ -371,6 +437,10 @@ public class DiceController {
 		this.diceUsed.add(dice);
 		dice.animateDown();
 
+	}
+
+	public boolean isAcive(Dice dice) {
+		return this.diceActive.contains(dice);
 	}
 
 }

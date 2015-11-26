@@ -12,4 +12,14 @@ public class TurnIndicatorMizuage extends TurnIndicator {
 		return -1;
 	}
 
+	@Override
+	public int ofKindSkillIncrease(int times) {
+		return -1;
+	}
+
+	@Override
+	public int oneOfEachSkillIncrease() {
+		return -1;
+	}
+
 }

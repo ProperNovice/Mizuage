@@ -21,7 +21,7 @@ public class SelectDiceOrContinue extends GameState {
 	}
 
 	@Override
-	protected void handleDiceNonExpensePressed(Dice dice) {
+	protected void handleDiceActivePressed(Dice dice) {
 		dice.reverseSelected();
 	}
 
@@ -41,7 +41,7 @@ public class SelectDiceOrContinue extends GameState {
 	private void proceed() {
 
 		super.controller.textController().concealText();
-		super.controller.diceController().rollDiceNonExpenseNonSelected();
+		super.controller.diceController().rollDiceNonSelected();
 		super.controller.flow().proceedToNextPhase();
 
 	}

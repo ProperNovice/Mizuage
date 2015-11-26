@@ -56,4 +56,8 @@ public abstract class TurnIndicator {
 
 	public abstract int servicesNeededForCoin();
 
+	public abstract int ofKindSkillIncrease(int times);
+
+	public abstract int oneOfEachSkillIncrease();
+
 }
