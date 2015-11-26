@@ -30,9 +30,8 @@ public class ResolveDiceRolls extends GameState {
 			proceedToNextTurnPhase();
 			return;
 		}
-		
-		super.controller.textController()
-		.showText(TextEnum.USE_DICE);
+
+		super.controller.textController().showText(TextEnum.USE_DICE);
 
 		for (DiceResults diceResultsTemp : diceResults) {
 
@@ -142,10 +141,9 @@ public class ResolveDiceRolls extends GameState {
 		int timesToAdvance = super.controller.turnIndicatorController()
 				.getOfKindTornIndicatorPoints(times);
 
-		super.controller.skillColumnController()
-				.advanceSkillColumnTokenAnimate(diceSideEnum, timesToAdvance);
-
-		Lock.lock();
+		if (super.controller.skillColumnController()
+				.advanceSkillColumnTokenAnimate(diceSideEnum, timesToAdvance))
+			Lock.lock();
 
 		handleGameStateChange();
 

@@ -14,6 +14,9 @@ public enum TextEnum {
 	CHOOSE_SKILL_TO_INCREASE("Choose skill\nto increase", TextTypeEnum.INDICATOR),
 	USE_DICE("Use dice", TextTypeEnum.INDICATOR),
 	RESOLVE_DICE_ROLL("Resolve dice roll", TextTypeEnum.OPTION),
+	YOU_WIN("You win", TextTypeEnum.INDICATOR),
+	YOU_LOSE("You lose", TextTypeEnum.INDICATOR),
+	MIZUAGE("Mizuage", TextTypeEnum.INDICATOR),
 	
 	;
 

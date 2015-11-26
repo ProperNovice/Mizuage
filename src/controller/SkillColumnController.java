@@ -71,7 +71,7 @@ public class SkillColumnController {
 
 	}
 
-	public void advanceSkillColumnTokenAnimate(DiceSideEnum diceSideEnum,
+	public boolean advanceSkillColumnTokenAnimate(DiceSideEnum diceSideEnum,
 			int times) {
 
 		int indexSkillColumnFrom = -1;
@@ -91,7 +91,7 @@ public class SkillColumnController {
 				indexSkillColumnTo);
 
 		if (indexSkillColumnFrom == indexSkillColumnTo)
-			return;
+			return false;
 
 		SkillColumnToken skillColumnToken = this.skillColumns.get(
 				indexSkillColumnFrom).removeSkillColumnTokenRearrange(
@@ -99,6 +99,26 @@ public class SkillColumnController {
 
 		this.skillColumns.get(indexSkillColumnTo).addTokenAnimate(
 				skillColumnToken);
+
+		return true;
+
+	}
+
+	public boolean atLeastOneSkillTokenIsAtColumn5() {
+
+		ArrayList<DiceSideEnum> diceSideEnumList = new ArrayList<>();
+
+		diceSideEnumList.add(DiceSideEnum.CONVERSATION);
+		diceSideEnumList.add(DiceSideEnum.DANCE);
+		diceSideEnumList.add(DiceSideEnum.MUSIC);
+
+		for (int counter = 5; counter <= this.skillColumns.size() - 1; counter++)
+			for (DiceSideEnum diceSideEnum : diceSideEnumList)
+				if (this.skillColumns.get(counter).containsSkillColumnToken(
+						diceSideEnum))
+					return true;
+
+		return false;
 
 	}
 

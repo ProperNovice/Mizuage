@@ -4,6 +4,8 @@ import dice.Dice;
 import enums.GameStateEnum;
 import enums.TextEnum;
 import gameState.ChooseSkillToIncrease;
+import gameState.GameEndLose;
+import gameState.GameEndWin;
 import gameState.GameState;
 import gameState.MizuageTurn;
 import gameState.ResolveDiceRolls;
@@ -34,6 +36,8 @@ public class GameStateController {
 		this.gameStates.add(new SelectDiceToKeep(
 				GameStateEnum.SELECT_DICE_TO_KEEP));
 		this.gameStates.add(new MizuageTurn(GameStateEnum.MIZUAGE_TURN));
+		this.gameStates.add(new GameEndWin(GameStateEnum.WIN));
+		this.gameStates.add(new GameEndLose(GameStateEnum.LOSE));
 
 	}
 

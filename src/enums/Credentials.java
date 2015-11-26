@@ -2,7 +2,7 @@ package enums;
 
 public enum Credentials {
 
-	TEXT_HEIGHT(50),
+	TEXT_HEIGHT(40),
 	COINS_PER_ROW(4),
 	TURN_INDICATORS_PER_ROW(5),
 

@@ -15,8 +15,17 @@ public class StartNextTurn extends GameState {
 
 		super.controller.turnIndicatorController().startNextTurn();
 
-		super.controller.diceController().rollDiceNonSelected();
-		super.controller.diceController().diselectAllDice();
+		if (super.controller.turnIndicatorController().nextTurnIsMizuage()) {
+
+			super.controller.flow().addGameStateFirst(
+					GameStateEnum.MIZUAGE_TURN);
+
+		} else {
+
+			super.controller.diceController().rollDiceNonSelected();
+			super.controller.diceController().diselectAllDice();
+
+		}
 
 		super.controller.flow().proceedToNextPhase();
 

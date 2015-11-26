@@ -10,5 +10,7 @@ public enum GameStateEnum {
 	CHOOSE_SKILL_TO_INCREASE,
 	SELECT_DICE_TO_KEEP,
 	MIZUAGE_TURN,
+	WIN,
+	LOSE,
 
 }

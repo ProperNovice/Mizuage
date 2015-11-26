@@ -117,4 +117,8 @@ public class CoinController {
 
 	}
 
+	public boolean gameIsLost() {
+		return this.coinsCurrent < -20;
+	}
+
 }

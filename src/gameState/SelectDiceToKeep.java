@@ -14,10 +14,11 @@ public class SelectDiceToKeep extends GameState {
 
 	@Override
 	public void handleGameStateChange() {
-		
+
 		super.controller.diceController().resetDiceImages();
 
-		if (!super.controller.diceController().diceActiveAreAllSelectedOrEmpty())
+		if (!super.controller.diceController()
+				.diceActiveAreAllSelectedOrEmpty())
 			super.controller.textController().showText(
 					TextEnum.SELECT_DICE_TO_KEEP);
 
@@ -55,6 +56,9 @@ public class SelectDiceToKeep extends GameState {
 
 		int diceExpense = super.controller.diceController().getDiceExpence();
 		super.controller.coinController().removeCoinsUpdatePanel(diceExpense);
+		
+		if (super.controller.coinController().gameIsLost())
+			super.controller.flow().addGameStateFirst(GameStateEnum.LOSE);
 
 		super.controller.flow().proceedToNextPhase();
 

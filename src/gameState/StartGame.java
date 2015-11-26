@@ -16,10 +16,18 @@ public class StartGame extends GameState {
 				DiceSideEnum.DANCE, DiceSideEnum.DANCE, DiceSideEnum.DANCE,
 				DiceSideEnum.DANCE);
 
-		super.controller.coinController().removeCoinsUpdatePanel(4);
+//		super.controller.coinController().removeCoinsUpdatePanel(19);
 
-		for (int counter = 1; counter <= 9; counter++)
-			super.controller.turnIndicatorController().startNextTurn();
+//		for (int counter = 1; counter <= 10; counter++)
+//			super.controller.turnIndicatorController().startNextTurn();
+
+		// super.controller.skillColumnController()
+		// .advanceSkillColumnTokenAnimate(DiceSideEnum.MUSIC, 4);
+		// super.controller.skillColumnController()
+		// .advanceSkillColumnTokenAnimate(DiceSideEnum.CONVERSATION, 5);
+		// super.controller.skillColumnController()
+		// .advanceSkillColumnTokenAnimate(DiceSideEnum.DANCE, 2);
+		// Lock.lock();
 
 		super.controller.flow().proceedToNextPhase();
 
