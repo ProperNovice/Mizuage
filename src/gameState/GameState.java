@@ -22,7 +22,7 @@ public abstract class GameState {
 
 	public void handleDicePressed(Dice dice) {
 
-		DiceSideEnum diceSideEnum = dice.getDiceSiceEnumShowing();
+		DiceSideEnum diceSideEnum = dice.getDiceSideEnumShowing();
 
 		if (diceSideEnum.equals(DiceSideEnum.EXPENCE))
 			return;

@@ -67,7 +67,7 @@ public class Dice implements EventHandlerAble {
 
 	}
 
-	public DiceSideEnum getDiceSiceEnumShowing() {
+	public DiceSideEnum getDiceSideEnumShowing() {
 		return this.diceSideShowing.getDiceSideEnum();
 	}
 

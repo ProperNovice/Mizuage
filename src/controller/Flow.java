@@ -33,11 +33,19 @@ public class Flow {
 
 	public void createGameStateTurn() {
 
-		// this.gameStateTurn.add(GameStateEnum.START_NEXT_TURN);
-		// this.gameStateTurn.add(GameStateEnum.SELECT_DICE_OR_CONTINUE);
-		// this.gameStateTurn.add(GameStateEnum.SELECT_DICE_OR_CONTINUE);
-		// this.gameStateTurn.add(GameStateEnum.RESOLVE_DICE_ROLLS);
+		this.gameStateTurn.add(GameStateEnum.START_NEXT_TURN);
+		this.gameStateTurn.add(GameStateEnum.SELECT_DICE_OR_CONTINUE);
+		this.gameStateTurn.add(GameStateEnum.SELECT_DICE_OR_CONTINUE);
+		this.gameStateTurn.add(GameStateEnum.RESOLVE_DICE_ROLLS);
 		this.gameStateTurn.add(GameStateEnum.SELECT_DICE_TO_KEEP);
+
+	}
+
+	public void removeAllSelectDiceOrContinue() {
+
+		while (this.gameStateResolving.getFirst().equals(
+				GameStateEnum.SELECT_DICE_OR_CONTINUE))
+			this.gameStateResolving.removeFirst();
 
 	}
 

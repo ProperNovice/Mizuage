@@ -5,6 +5,7 @@ import enums.GameStateEnum;
 import enums.TextEnum;
 import gameState.ChooseSkillToIncrease;
 import gameState.GameState;
+import gameState.MizuageTurn;
 import gameState.ResolveDiceRolls;
 import gameState.SelectDiceOrContinue;
 import gameState.SelectDiceToKeep;
@@ -32,6 +33,7 @@ public class GameStateController {
 				GameStateEnum.CHOOSE_SKILL_TO_INCREASE));
 		this.gameStates.add(new SelectDiceToKeep(
 				GameStateEnum.SELECT_DICE_TO_KEEP));
+		this.gameStates.add(new MizuageTurn(GameStateEnum.MIZUAGE_TURN));
 
 	}
 

@@ -17,6 +17,7 @@ public class ResolveDiceRolls extends GameState {
 	@Override
 	public void handleGameStateChange() {
 
+		super.controller.diceController().resetDiceImages();
 		super.controller.diceController().diselectAllDice();
 
 		int servicesNeededForCoin = super.controller.turnIndicatorController()

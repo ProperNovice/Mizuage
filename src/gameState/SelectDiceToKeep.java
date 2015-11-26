@@ -14,15 +14,22 @@ public class SelectDiceToKeep extends GameState {
 
 	@Override
 	public void handleGameStateChange() {
+		
+		super.controller.diceController().resetDiceImages();
 
-		super.controller.textController()
-				.showText(TextEnum.SELECT_DICE_TO_KEEP);
-		super.controller.textController().showText(TextEnum.CONTINUE);
+		if (!super.controller.diceController().diceActiveAreAllSelectedOrEmpty())
+			super.controller.textController().showText(
+					TextEnum.SELECT_DICE_TO_KEEP);
+
+		super.controller.textController().showText(TextEnum.START_NEXT_TURN);
 
 	}
 
 	@Override
 	protected void handleDiceActivePressed(Dice dice) {
+
+		if (!super.controller.diceController().isAcive(dice))
+			return;
 
 		dice.reverseSelected();
 
@@ -39,7 +46,18 @@ public class SelectDiceToKeep extends GameState {
 
 	@Override
 	public void handleTextOptionPressed(TextEnum textEnum) {
+		handleStartNextTurn();
+	}
+
+	private void handleStartNextTurn() {
+
+		super.controller.textController().concealText();
+
+		int diceExpense = super.controller.diceController().getDiceExpence();
+		super.controller.coinController().removeCoinsUpdatePanel(diceExpense);
+
 		super.controller.flow().proceedToNextPhase();
+
 	}
 
 }

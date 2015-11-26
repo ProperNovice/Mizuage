@@ -136,4 +136,11 @@ public class TurnIndicatorController {
 				.oneOfEachSkillIncrease();
 	}
 
+	public boolean nextTurnIsMizuage() {
+
+		TurnIndicator turnIndicator = this.turnIndicators.getFirst().getFirst();
+		return (turnIndicator.getClass().equals(TurnIndicatorMizuage.class));
+
+	}
+
 }

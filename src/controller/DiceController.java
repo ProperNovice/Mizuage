@@ -100,6 +100,13 @@ public class DiceController {
 
 	}
 
+	public void resetDiceImages() {
+
+		for (RollDiceImage rollDiceImage : this.rollDiceImages)
+			rollDiceImage.setVisible(false);
+
+	}
+
 	public void diselectAllDice() {
 
 		for (Dice dice : this.diceActive)
@@ -117,7 +124,7 @@ public class DiceController {
 
 			dice = this.diceActive.get(index);
 
-			while (!dice.getDiceSiceEnumShowing().equals(sideEnum))
+			while (!dice.getDiceSideEnumShowing().equals(sideEnum))
 				dice.roll();
 
 			index++;
@@ -136,7 +143,7 @@ public class DiceController {
 
 		for (Dice dice : diceActiveTemp) {
 
-			if (!dice.getDiceSiceEnumShowing().equals(DiceSideEnum.EXPENCE))
+			if (!dice.getDiceSideEnumShowing().equals(DiceSideEnum.EXPENCE))
 				continue;
 
 			lock = true;
@@ -213,7 +220,7 @@ public class DiceController {
 		int services = 0;
 
 		for (Dice dice : diceList)
-			if (dice.getDiceSiceEnumShowing().equals(DiceSideEnum.SERVICE))
+			if (dice.getDiceSideEnumShowing().equals(DiceSideEnum.SERVICE))
 				services++;
 
 		if (services >= servicesNeeded)
@@ -231,7 +238,7 @@ public class DiceController {
 
 		for (Dice dice : diceList) {
 
-			switch (dice.getDiceSiceEnumShowing()) {
+			switch (dice.getDiceSideEnumShowing()) {
 
 			case CONVERSATION:
 				conversation++;
@@ -273,7 +280,7 @@ public class DiceController {
 
 		for (Dice dice : diceList) {
 
-			switch (dice.getDiceSiceEnumShowing()) {
+			switch (dice.getDiceSideEnumShowing()) {
 
 			case CONVERSATION:
 				conversation++;
@@ -313,7 +320,7 @@ public class DiceController {
 
 		for (Dice dice : diceActiveTemp) {
 
-			if (!dice.getDiceSiceEnumShowing().equals(diceSideEnum))
+			if (!dice.getDiceSideEnumShowing().equals(diceSideEnum))
 				continue;
 
 			times--;
@@ -343,7 +350,7 @@ public class DiceController {
 
 		for (Dice dice : diceActiveTemp) {
 
-			diceSideEnum = dice.getDiceSiceEnumShowing();
+			diceSideEnum = dice.getDiceSideEnumShowing();
 
 			if (!diceSideEnumList.contains(diceSideEnum))
 				continue;
@@ -366,7 +373,7 @@ public class DiceController {
 
 		for (Dice dice : diceActiveTemp) {
 
-			if (!dice.getDiceSiceEnumShowing().equals(DiceSideEnum.SERVICE))
+			if (!dice.getDiceSideEnumShowing().equals(DiceSideEnum.SERVICE))
 				continue;
 
 			servicesNeeded--;
@@ -389,7 +396,7 @@ public class DiceController {
 
 		for (Dice dice : this.diceActive) {
 
-			switch (dice.getDiceSiceEnumShowing()) {
+			switch (dice.getDiceSideEnumShowing()) {
 
 			case CONVERSATION:
 				conversation++;
@@ -441,6 +448,28 @@ public class DiceController {
 
 	public boolean isAcive(Dice dice) {
 		return this.diceActive.contains(dice);
+	}
+
+	public int getDiceExpence() {
+
+		int diceExpence = 0;
+
+		for (Dice dice : this.diceUsed)
+			if (dice.getDiceSideEnumShowing().equals(DiceSideEnum.EXPENCE))
+				diceExpence++;
+
+		return diceExpence;
+
+	}
+
+	public boolean diceActiveAreAllSelectedOrEmpty() {
+
+		for (Dice dice : this.diceActive)
+			if (!dice.isSelected())
+				return false;
+
+		return true;
+
 	}
 
 }
