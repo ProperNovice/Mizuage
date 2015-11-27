@@ -23,6 +23,7 @@ public class PanelGame extends Parent {
 
 			this.panel.removeCurrentPanelGame();
 			this.panel.createNewPanelGame();
+			this.panel.startGame();
 
 		});
 
