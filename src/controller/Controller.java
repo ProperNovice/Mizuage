@@ -13,7 +13,6 @@ public class Controller {
 	private DiceController diceController = null;
 
 	public Controller() {
-		System.out.println("as");
 		createInstances();
 	}
 
