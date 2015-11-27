@@ -121,4 +121,8 @@ public class CoinController {
 		return this.coinsCurrent < -20;
 	}
 
+	public boolean gameIsWon() {
+		return this.coinsCurrent > 0;
+	}
+
 }

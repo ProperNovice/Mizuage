@@ -21,6 +21,7 @@ public enum TextEnum {
 	CHOOSE_SKILL("Choose skill", TextTypeEnum.INDICATOR),
 	SELECT_DICE("Select dice", TextTypeEnum.INDICATOR),
 	START_GAME("Start game", TextTypeEnum.OPTION),
+	RESTART("Restart", TextTypeEnum.OPTION),
 	
 	;
 

@@ -12,15 +12,18 @@ public class StartGame extends GameState {
 	@Override
 	public void handleGameStateChange() {
 
-		// super.controller.diceController().testSetDiceRolls(DiceSideEnum.CONVERSATION,
-		// DiceSideEnum.EXPENCE, DiceSideEnum.MUSIC, DiceSideEnum.SERVICE,
-		// DiceSideEnum.DANCE);
-		//
+		super.controller.textController().showText(TextEnum.START_GAME);
+
+		// super.controller.diceController().testSetDiceRolls(
+		// DiceSideEnum.CONVERSATION, DiceSideEnum.CONVERSATION,
+		// DiceSideEnum.MUSIC, DiceSideEnum.SERVICE, DiceSideEnum.DANCE);
+
 		// super.controller.coinController().removeCoinsUpdatePanel(19);
-		//
-		// for (int counter = 1; counter <= 15; counter++)
+		// super.controller.coinController().addCoinsUpdatePanel(1);
+
+		// for (int counter = 1; counter <= 19; counter++)
 		// super.controller.turnIndicatorController().startNextTurn();
-		//
+
 		// super.controller.skillColumnController()
 		// .advanceSkillColumnTokenAnimate(DiceSideEnum.MUSIC, 8);
 		// super.controller.skillColumnController()
@@ -29,8 +32,7 @@ public class StartGame extends GameState {
 		// .advanceSkillColumnTokenAnimate(DiceSideEnum.DANCE, 2);
 		// Lock.lock();
 
-		super.controller.textController().showText(TextEnum.START_GAME);
-		super.controller.flow().proceedToNextPhase();
+		// super.controller.flow().proceedToNextPhase();
 
 	}
 

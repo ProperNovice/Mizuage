@@ -28,6 +28,21 @@ public class SelectDiceToKeep extends GameState {
 
 		}
 
+		if (super.controller.turnIndicatorController().gameEnded()) {
+
+			System.out.println("here");
+
+			if (super.controller.coinController().gameIsWon())
+				super.controller.flow().addGameStateFirst(GameStateEnum.WIN);
+			else
+				super.controller.flow().addGameStateFirst(GameStateEnum.LOSE);
+
+			super.controller.flow().proceedToNextPhase();
+
+			return;
+
+		}
+
 		if (!super.controller.diceController()
 				.diceActiveAreAllSelectedOrEmpty())
 			super.controller.textController().showText(

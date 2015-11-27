@@ -148,4 +148,16 @@ public class TurnIndicatorController {
 		return (turnIndicator.getClass().equals(TurnIndicatorGeisha.class));
 	}
 
+	public boolean gameEnded() {
+
+		if (this.turnIndicators.size() > 1)
+			return false;
+
+		if (this.turnIndicators.getFirst().size() > 1)
+			return false;
+
+		return true;
+
+	}
+
 }
