@@ -19,6 +19,8 @@ public enum TextEnum {
 	MIZUAGE("Mizuage", TextTypeEnum.INDICATOR),
 	EARN_MONEY("Earn money", TextTypeEnum.OPTION),
 	CHOOSE_SKILL("Choose skill", TextTypeEnum.INDICATOR),
+	SELECT_DICE("Select dice", TextTypeEnum.INDICATOR),
+	START_GAME("Start game", TextTypeEnum.OPTION),
 	
 	;
 

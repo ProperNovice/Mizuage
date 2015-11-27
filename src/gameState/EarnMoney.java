@@ -15,7 +15,8 @@ public class EarnMoney extends GameState {
 	@Override
 	public void handleGameStateChange() {
 
-		super.controller.textController().showText(TextEnum.CHOOSE_SKILL);
+		super.controller.textController()
+				.showText(TextEnum.SELECT_DICE);
 
 	}
 
@@ -26,6 +27,8 @@ public class EarnMoney extends GameState {
 
 		if (diceSideEnum.equals(DiceSideEnum.SERVICE))
 			return;
+
+		super.controller.textController().concealText();
 
 		super.controller.diceController().addDiceFromActiveToUsedAnimate(dice);
 

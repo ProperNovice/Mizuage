@@ -1,6 +1,7 @@
 package gameState;
 
 import enums.GameStateEnum;
+import enums.TextEnum;
 
 public class StartGame extends GameState {
 
@@ -28,6 +29,15 @@ public class StartGame extends GameState {
 		// .advanceSkillColumnTokenAnimate(DiceSideEnum.DANCE, 2);
 		// Lock.lock();
 
+		super.controller.textController().showText(TextEnum.START_GAME);
+		super.controller.flow().proceedToNextPhase();
+
+	}
+
+	@Override
+	public void handleTextOptionPressed(TextEnum textEnum) {
+
+		super.controller.textController().concealText();
 		super.controller.flow().proceedToNextPhase();
 
 	}
