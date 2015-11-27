@@ -12,5 +12,6 @@ public enum GameStateEnum {
 	MIZUAGE_TURN,
 	WIN,
 	LOSE,
+	EARN_MONEY,
 
 }

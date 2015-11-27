@@ -26,6 +26,11 @@ public class ResolveDiceRolls extends GameState {
 		ArrayList<DiceResults> diceResults = super.controller.diceController()
 				.getDiceResultsFromActiveDice(servicesNeededForCoin);
 
+		if (super.controller.turnIndicatorController().currentTurnIsGeisha())
+			if (super.controller.diceController()
+					.atLeastOneActiveDiceIsConvDanceMusic())
+				diceResults.add(DiceResults.EARN_MONEY);
+
 		if (diceResults.isEmpty()) {
 			proceedToNextTurnPhase();
 			return;
@@ -61,6 +66,10 @@ public class ResolveDiceRolls extends GameState {
 				super.controller.textController().showText(TextEnum.SERVICE);
 				break;
 
+			case EARN_MONEY:
+				super.controller.textController().showText(TextEnum.EARN_MONEY);
+				break;
+
 			}
 
 		}
@@ -94,6 +103,11 @@ public class ResolveDiceRolls extends GameState {
 
 		case SERVICE:
 			resolveService();
+			break;
+
+		case EARN_MONEY:
+			super.controller.flow().addGameStateFirst(GameStateEnum.EARN_MONEY);
+			proceedToNextTurnPhase();
 			break;
 
 		case CONTINUE:

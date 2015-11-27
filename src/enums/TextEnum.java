@@ -17,6 +17,8 @@ public enum TextEnum {
 	YOU_WIN("You win", TextTypeEnum.INDICATOR),
 	YOU_LOSE("You lose", TextTypeEnum.INDICATOR),
 	MIZUAGE("Mizuage", TextTypeEnum.INDICATOR),
+	EARN_MONEY("Earn money", TextTypeEnum.OPTION),
+	CHOOSE_SKILL("Choose skill", TextTypeEnum.INDICATOR),
 	
 	;
 

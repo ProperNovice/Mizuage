@@ -4,6 +4,7 @@ import dice.Dice;
 import enums.GameStateEnum;
 import enums.TextEnum;
 import gameState.ChooseSkillToIncrease;
+import gameState.EarnMoney;
 import gameState.GameEndLose;
 import gameState.GameEndWin;
 import gameState.GameState;
@@ -38,6 +39,7 @@ public class GameStateController {
 		this.gameStates.add(new MizuageTurn(GameStateEnum.MIZUAGE_TURN));
 		this.gameStates.add(new GameEndWin(GameStateEnum.WIN));
 		this.gameStates.add(new GameEndLose(GameStateEnum.LOSE));
+		this.gameStates.add(new EarnMoney(GameStateEnum.EARN_MONEY));
 
 	}
 

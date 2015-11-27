@@ -17,6 +17,17 @@ public class SelectDiceToKeep extends GameState {
 
 		super.controller.diceController().resetDiceImages();
 
+		int diceExpense = super.controller.diceController().getDiceExpence();
+		super.controller.coinController().removeCoinsUpdatePanel(diceExpense);
+
+		if (super.controller.coinController().gameIsLost()) {
+
+			super.controller.flow().addGameStateFirst(GameStateEnum.LOSE);
+			super.controller.flow().proceedToNextPhase();
+			return;
+
+		}
+
 		if (!super.controller.diceController()
 				.diceActiveAreAllSelectedOrEmpty())
 			super.controller.textController().showText(
@@ -53,13 +64,6 @@ public class SelectDiceToKeep extends GameState {
 	private void handleStartNextTurn() {
 
 		super.controller.textController().concealText();
-
-		int diceExpense = super.controller.diceController().getDiceExpence();
-		super.controller.coinController().removeCoinsUpdatePanel(diceExpense);
-		
-		if (super.controller.coinController().gameIsLost())
-			super.controller.flow().addGameStateFirst(GameStateEnum.LOSE);
-
 		super.controller.flow().proceedToNextPhase();
 
 	}

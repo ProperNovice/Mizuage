@@ -27,6 +27,9 @@ public abstract class GameState {
 		if (diceSideEnum.equals(DiceSideEnum.EXPENCE))
 			return;
 
+		if (!this.controller.diceController().isAcive(dice))
+			return;
+
 		handleDiceActivePressed(dice);
 
 	}

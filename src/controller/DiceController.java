@@ -438,7 +438,7 @@ public class DiceController {
 
 	}
 
-	private void addDiceFromActiveToUsedAnimate(Dice dice) {
+	public void addDiceFromActiveToUsedAnimate(Dice dice) {
 
 		this.diceActive.remove(dice);
 		this.diceUsed.add(dice);
@@ -469,6 +469,32 @@ public class DiceController {
 				return false;
 
 		return true;
+
+	}
+
+	public boolean atLeastOneActiveDiceIsConvDanceMusic() {
+
+		for (Dice dice : this.diceActive) {
+
+			switch (dice.getDiceSideEnumShowing()) {
+
+			case CONVERSATION:
+				return true;
+
+			case DANCE:
+				return true;
+
+			case MUSIC:
+				return true;
+
+			default:
+				continue;
+
+			}
+
+		}
+
+		return false;
 
 	}
 

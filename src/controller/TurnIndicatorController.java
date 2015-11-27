@@ -143,4 +143,9 @@ public class TurnIndicatorController {
 
 	}
 
+	public boolean currentTurnIsGeisha() {
+		TurnIndicator turnIndicator = this.turnIndicators.getFirst().getFirst();
+		return (turnIndicator.getClass().equals(TurnIndicatorGeisha.class));
+	}
+
 }

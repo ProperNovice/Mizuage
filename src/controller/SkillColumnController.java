@@ -3,6 +3,7 @@ package controller;
 import skillColumn.SkillColumn;
 import skillColumn.SkillColumnToken;
 import utils.ArrayList;
+import utils.Logger;
 import enums.Coordinates;
 import enums.DiceSideEnum;
 import enums.Dimensions;
@@ -119,6 +120,19 @@ public class SkillColumnController {
 					return true;
 
 		return false;
+
+	}
+
+	public int getCoinsFromSkillColumnToken(DiceSideEnum diceSideEnum) {
+
+		for (SkillColumn skillColumn : this.skillColumns)
+			if (skillColumn.containsSkillColumnToken(diceSideEnum))
+				return skillColumn.getMoney();
+
+		Logger.logNewLine("getCoinsFromSkillColumnToken - didn't find skill token - "
+				+ diceSideEnum);
+
+		return -1;
 
 	}
 
